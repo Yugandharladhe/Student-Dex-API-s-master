@@ -18,5 +18,9 @@ mongoose
     console.log("connection successfully");
   })
   .catch((e) => {
-    console.log("failed");
+    mongoose.connect("mongodb://localhost:27017").then(()=>{
+        console.log("Connection is to local Database");
+    }).catch((e)=>{
+        console.log("Connection failed to local Database");
+    })
   });
