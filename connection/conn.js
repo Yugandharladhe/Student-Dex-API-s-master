@@ -19,7 +19,7 @@ mongoose
   })
   .catch((e) => {
     mongoose.connect("mongodb://localhost:27017/studentdex").then(()=>{
-      console.log("Connection to loacl Database");
+      console.log("Connection to locall Database");
     }).catch((e)=>{
       console.log("Connection failed to local Database");
     })
