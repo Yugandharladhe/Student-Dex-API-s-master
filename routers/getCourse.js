@@ -11,7 +11,7 @@ router.post("/getcourses", async (req, res) => {
   const arr=[]
   if(data==null)
   {
-    res,send("false");
+    res.send("false");
   }
   else if(data.cs3001=="true")
   {
