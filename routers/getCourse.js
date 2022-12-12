@@ -9,7 +9,11 @@ app.use(express.json());
 router.post("/getcourses", async (req, res) => {
   const data = await Courses.findOne({ RollNo: req.body.RollNo }).select({flag:0});
   const arr=[]
-  if(data.cs3001=="true")
+  if(data==null)
+  {
+    res,send("false");
+  }
+  else if(data.cs3001=="true")
   {
     arr.push("cs3001");
   }
