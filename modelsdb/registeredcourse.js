@@ -34,6 +34,7 @@ const courseSchema = new mongoose.Schema({
   flag: {
     type: String,
     required: true,
+    default:"false"
   },
 });
 

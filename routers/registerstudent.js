@@ -21,8 +21,7 @@ router.post("/createstudent", async (req, res) => {
         cs3006: "false",
         cs3007: "false",
         cs3008: "false",
-        cs3009: "false",
-        flag: "false",
+        cs3009: "false"
       });
       const falsecourse = await schema.save();
       res.status(201).json({ status: "Successfull" });

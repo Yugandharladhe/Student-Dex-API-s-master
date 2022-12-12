@@ -8,7 +8,11 @@ const Teacher = require("../modelsdb/teacherregister");
 router.post("/getregisteredcandidate", async (req, res) => {
   const teach = await Teacher.findOne({ Subject: req.body.Subject });
 
-  if (teach.Subject == "cs3001") {
+  if(teach==null)
+  {
+    res.send("false").status(400);
+  }
+  else if (teach.Subject == "cs3001") {
     const studdata1 = await Course.find({ cs3001: "true" })
       .select({ RollNo: 1, _id: 0 })
       .sort({ RollNo: 1 });
