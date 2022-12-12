@@ -7,7 +7,7 @@ require("./connection/conn");
 const Student = require("./modelsdb/schemastudent");
 const courseregister = require("./routers/registerstudent");
 const updatestudent = require("./routers/updatedetails");
-const deletestudent = require("./routers/updatedetails");
+const deletestudent = require("./routers/deletestudent");
 const getstudent = require("./routers/getdetail");
 const authenticate = require("./routers/authenticate");
 const registercourse = require("./routers/registeredcourse");
