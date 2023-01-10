@@ -3,6 +3,7 @@ const app = express();
 const router = new express.Router();
 require("../connection/conn");
 const Student = require("../modelsdb/schemastudent");
+const bcrypt=require("bcryptjs");
 
 app.use(express.json());
 
@@ -16,7 +17,7 @@ router.post("/getAuthenticateStudent", async (req, res) => {
       res.status(400).json({
         status: "Unavailable",
       });
-    } else if (data.Password == req.body.Password) {
+    } else if (await bcrypt.compare(req.body.Password,data.Password)) {
       res.status(200).json(data);
     } else {
       res.status(500).json({ status: "Invalid" });

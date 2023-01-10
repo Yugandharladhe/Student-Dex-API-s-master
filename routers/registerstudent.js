@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt=require("bcryptjs");
 const router = new express.Router();
 require("../connection/conn");
 const Student = require("../modelsdb/schemastudent");
@@ -9,6 +10,7 @@ router.post("/createstudent", async (req, res) => {
     const data = await Student.findOne({ RollNo: req.body.RollNo });
     if (data == null) {
       const user = new Student(req.body);
+      //middleware to hash password
       const createuser = await user.save();
 
       const schema = new Course({

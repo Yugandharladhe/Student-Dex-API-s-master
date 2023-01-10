@@ -12,7 +12,7 @@
 const mongoose = require("mongoose");
 mongoose
   .connect(
-    "mongodb://mini-project:WGBFqHB69fKANkfj8dsZSVGrMJcet1v4CvG0oXg1AOInkZCvosFZHUO6WKJA2KwiTWw7yNKwZ8jqACDbeuywRg==@mini-project.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@mini-project@"
+    "mongodb://localhost:27017/studentdex"
   )
   .then(() => {
     console.log("connection successfully");
