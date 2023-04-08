@@ -11,7 +11,7 @@
 
 // const mongoose=require("mongoose")
 // const Schema = mongoose.Schema
-// mongoose.connect("mongodb://cosmodemo:zgICwEeopY1CocWRbAuMZpSbTGrYOUlhq1erzAMx9AefkefNXA7wtldxgsxAcx81eyanlwKQvwYpACDbeuokNA==@cosmodemo.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@cosmodemo@").then(()=>{
+// mongoose.connect("").then(()=>{
 //     console.log("successfull")
 // }).catch((err)=>{
 //     console.log("failed")
