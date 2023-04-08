@@ -1,0 +1,86 @@
+input:
+
+{
+    startDate:"",
+    endDate:"",
+    restaurantId
+}
+
+output:
+{
+    totalCollection:4344234,
+    totalGST:869,
+    report:
+    [
+        {
+            bill_no:"last three digit of order_id",
+            table_no:"m1#2",
+            food_bill_Amt:3242,
+            discount:423
+            received:343
+            remark:"paid/unpaid",
+        },
+        {
+            bill_no:"last three digit of order_id",
+            table_no:"m1#2",
+            food_bill_Amt:3242,
+            discount:423
+            received:343
+            remark:"paid/unpaid",
+        },
+        {
+            bill_no:"last three digit of order_id",
+            table_no:"m1#2",
+            food_bill_Amt:3242,
+            discount:423
+            received:343
+            remark:"paid/unpaid",
+        }
+    ]
+}
+
+
+
+data:[{
+    restaurantId:"3r3r34jrhkjh",
+    paymentStatus:true/false,
+    orderAmount: {
+      totalItem:{
+        type:Number, 
+      },
+      orderBeforeAddingGSTValue:{
+        type:Number
+      },
+      orderExcludeGSTValue:{
+        type:Number,
+      },
+      orderGst:{
+        type:Number, 
+      },
+      discount:{
+        type:Number,
+        default:0
+      },
+      total:{ 
+        type: Number 
+        },
+      finalTotal:{
+        type:Number
+      }
+    },
+    taxOnTotalAmount: { type: Number },
+    createdUser:{
+      type: Schema.ObjectId, ref: 'User' 
+    },
+    table:{
+      type: Schema.ObjectId, ref: 'Table'
+    }, 
+    customer:{
+      type: Schema.ObjectId, ref: 'Customer'
+        
+    }
+} 
+]
+
+
+    

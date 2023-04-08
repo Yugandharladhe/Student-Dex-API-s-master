@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt=require("bcryptjs");
+const jwt=require("jsonwebtoken");
 const router = new express.Router();
 require("../connection/conn");
 const Student = require("../modelsdb/schemastudent");
@@ -8,9 +9,17 @@ const Course = require("../modelsdb/registeredcourse");
 router.post("/createstudent", async (req, res) => {
   try {
     const data = await Student.findOne({ RollNo: req.body.RollNo });
-    if (data == null) {
+    if (data==null) {
+      //console.log(data);
       const user = new Student(req.body);
       //middleware to hash password
+      //middleware to generate token
+      const token=await user.generateAuthToken();
+      // console.log(user._id.toString());
+      // const token=await jwt.sign({_id:user._id.toString()},"thisismystudentmanagementapplicationbasedonexpress");
+      console.log(token);
+      //user.token=token;
+
       const createuser = await user.save();
 
       const schema = new Course({
@@ -26,7 +35,14 @@ router.post("/createstudent", async (req, res) => {
         cs3009: "false"
       });
       const falsecourse = await schema.save();
-      res.status(201).json({ status: "Successfull" });
+      //res.status(201).cookie("jwt",token).json({ status: "Successful" });
+      res.cookie("mytoken",token,{
+        expires:new Date(Date.now()+10000),
+        httpOnly:true
+        //secure:true <---it is only for https protocol
+      }).json({
+        status:"Success"
+      })
     } else {
       res.json({ status: "Exists" });
     }

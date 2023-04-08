@@ -1,5 +1,5 @@
 const express = require("express");
-
+const auth=require("./middleware/auth");
 var cors = require("cors");
 const app = express();
 
@@ -20,7 +20,7 @@ const authteach = require("./routers/authenticateteach");
 const countuser = require("./routers/countusers");
 const forgotpassword=require("./routers/forgotpassword");
 //const user = require("./routers/getunregicourse");
-
+const getAllStudent=require("./routers/getAllStudent");
 app.use(cors());
 app.use(express.json());
 app.use("/user",courseregister);
@@ -37,6 +37,7 @@ app.use(showcoursestudent);
 app.use(authteach);
 app.use(countuser);
 app.use(forgotpassword);
+app.use(getAllStudent);
 //app.use(user);
 
 const middleware=async (req,res,next)=>{
@@ -51,17 +52,25 @@ const middleware=async (req,res,next)=>{
   }
 }
 
-app.get("/home", async (req, res) => {
-  console.log(req.body.age);
-  res.json([{
-    age:req.body.age,
-    name:req.body.myname
-  },
-{
-  status:true
-}])
-  
-});
+// app.get("/home",auth,async(req,res)=>{
+//   res.send("hot");
+// })
+
+// const jwt=require("jsonwebtoken");
+// var token;
+// const createToken=async()=>{
+//   var token=await jwt.sign({_id:"1234567890yugandhar"},"mynameisyugandharladheandiamcoder",{
+//     expiresIn:"3 minutes"
+//   });
+//   console.log(token);
+//   console.log("---------------------------------------------------------------");
+//   const status=await jwt.verify(token,"mynameisyugandharladheandiamcoder");
+//   console.log(status);
+// }
+
+// createToken();
+
+
 
 app.listen(1000, () => {
   console.log("Connection is at 1000 port");

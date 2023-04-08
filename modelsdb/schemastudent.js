@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const bcrypt=require("bcryptjs")
+const bcrypt=require("bcryptjs");
+const jwt=require("jsonwebtoken");
 
 const studentSchema = new mongoose.Schema({
   FirstName: {
@@ -76,16 +77,40 @@ const studentSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  token:{
+    type:String,
+    required:false
+  }
 });
 
+
+//generating token
+studentSchema.methods.generateAuthToken = async function(){
+  try{
+    const tokengen=await jwt.sign({_id:this._id.toString()},"thisismystudentmanagementapplicationbasedonexpress",{
+      expiresIn:Date.now()+600000
+    });
+    //console.log(token);
+    this.token=tokengen;
+    await this.save();
+    return tokengen;
+  }catch(err){
+    console.log(err);
+  }
+
+}
+
+
+//to hash the password
 studentSchema.pre('save',async function(next){
   if(this.isModified("Password"))
   {
-      console.log("hii form middleware");
+      //console.log("hii form middleware");
       this.Password=await bcrypt.hash(this.Password,12);
   }
   next();
 });
+
 
 
 //$2a$12$Pzwpno440ZqfDQpuVTi/zeX0jKVowRauMOIsz4Zy8nuPgXxfxx6zS

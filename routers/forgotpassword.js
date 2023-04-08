@@ -3,8 +3,9 @@ const Student = require("../modelsdb/schemastudent");
 const app = express();
 const router = new express.Router();
 const bcrypt=require("bcryptjs");
+const verify=require("../middleware/auth");
 
-router.post("/forgotpassword",async(req,res)=>{
+router.get("/forgotpassword",verify,async(req,res)=>{
     const stud=await Student.findOne({RollNo:req.body.RollNo});
     if(stud)
     {
