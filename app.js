@@ -47,18 +47,8 @@ app.use(showNotes);
 app.use(deleteNotes);
 //app.use(user);
 
-const middleware=async (req,res,next)=>{
-  if(parseInt(req.body.age)<18)
-  {
-    req.body.age=false;
-    next();
-  }
-  else{
-    req.body.age=true;
-    next();
-  }
-}
 
+const PORT=process.env.PORT || 3000
 // app.get("/home",auth,async(req,res)=>{
 //   res.send("hot");
 // })
@@ -79,6 +69,6 @@ const middleware=async (req,res,next)=>{
 
 
 
-app.listen(1000, () => {
-  console.log("Connection is at 1000 port");
+app.listen(PORT, () => {
+  console.log(`port is listening on ${PORT}`);
 });
