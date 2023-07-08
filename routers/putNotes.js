@@ -23,7 +23,7 @@ router.post("/putNotes",upload.single("notes"), async (req, res) => {
     console.log(req.file)
     const filePath=path.join(__dirname,"../uploads/"+req.file.filename)
     console.log(filePath)
-    const resp=await drive .files.create({
+    const resp=await drive.files.create({
         requestBody:{
             name:req.file.filename,
             mimetype:req.file.mimetype
@@ -47,6 +47,7 @@ router.post("/putNotes",upload.single("notes"), async (req, res) => {
                 type:"anyone"
             }
         })
+        const remove=fs.unlinkSync(filePath)
         res.json({data:"uploaded"})
     }
     else{
