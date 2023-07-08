@@ -2,7 +2,7 @@ const express = require("express");
 const auth=require("./middleware/auth");
 var cors = require("cors");
 const app = express();
-
+require("dotenv").config()
 require("./connection/conn");
 const Student = require("./modelsdb/schemastudent");
 const courseregister = require("./routers/registerstudent");
@@ -21,6 +21,10 @@ const countuser = require("./routers/countusers");
 const forgotpassword=require("./routers/forgotpassword");
 //const user = require("./routers/getunregicourse");
 const getAllStudent=require("./routers/getAllStudent");
+const putNotes=require("./routers/putNotes")
+const showNotes=require("./routers/showNotes")
+const deleteNotes=require("./routers/deleteNotes")
+
 app.use(cors());
 app.use(express.json());
 app.use("/user",courseregister);
@@ -38,6 +42,9 @@ app.use(authteach);
 app.use(countuser);
 app.use(forgotpassword);
 app.use(getAllStudent);
+app.use(putNotes);
+app.use(showNotes);
+app.use(deleteNotes);
 //app.use(user);
 
 const middleware=async (req,res,next)=>{
