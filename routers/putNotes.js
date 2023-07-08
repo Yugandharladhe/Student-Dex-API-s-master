@@ -48,7 +48,7 @@ router.post("/putNotes",upload.single("notes"), async (req, res) => {
             }
         })
         const remove=fs.unlinkSync(filePath)
-        res.json({data:"uploaded"})
+        res.json({data:"uploaded",id:resp.data.id})
     }
     else{
         res.json({data:"not uploaded"})
