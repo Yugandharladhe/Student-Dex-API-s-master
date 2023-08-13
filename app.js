@@ -1,5 +1,5 @@
 const express = require("express");
-const auth=require("./middleware/auth");
+const auth = require("./middleware/auth");
 var cors = require("cors");
 const app = express();
 require("dotenv").config()
@@ -18,16 +18,17 @@ const teacherdetails = require("./routers/getteacherdetails");
 const showcoursestudent = require("./routers/showcoursestudent");
 const authteach = require("./routers/authenticateteach");
 const countuser = require("./routers/countusers");
-const forgotpassword=require("./routers/forgotpassword");
+const forgotpassword = require("./routers/forgotpassword");
 //const user = require("./routers/getunregicourse");
-const getAllStudent=require("./routers/getAllStudent");
-const putNotes=require("./routers/putNotes")
-const showNotes=require("./routers/showNotes")
-const deleteNotes=require("./routers/deleteNotes")
+const getAllStudent = require("./routers/getAllStudent");
+const putNotes = require("./routers/putNotes")
+const showNotes = require("./routers/showNotes")
+const deleteNotes = require("./routers/deleteNotes")
+const feespaid = require("./routers/feespaid")
 
 app.use(cors());
 app.use(express.json());
-app.use("/user",courseregister);
+app.use("/user", courseregister);
 app.use(updatestudent);
 app.use(deletestudent);
 app.use(getstudent);
@@ -45,13 +46,14 @@ app.use(getAllStudent);
 app.use(putNotes);
 app.use(showNotes);
 app.use(deleteNotes);
+app.use(feespaid);
 //app.use(user);
 
 
-const PORT=process.env.PORT || 3000
-// app.get("/home",auth,async(req,res)=>{
-//   res.send("hot");
-// })
+const PORT = process.env.PORT || 3000
+    // app.get("/home",auth,async(req,res)=>{
+    //   res.send("hot");
+    // })
 
 // const jwt=require("jsonwebtoken");
 // var token;
@@ -70,5 +72,5 @@ const PORT=process.env.PORT || 3000
 
 
 app.listen(PORT, () => {
-  console.log(`port is listening on ${PORT}`);
+    console.log(`port is listening on ${PORT}`);
 });
